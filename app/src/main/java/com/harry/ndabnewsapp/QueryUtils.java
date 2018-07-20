@@ -25,44 +25,6 @@ public final class QueryUtils {
 
     /** Tag for the log messages */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
-    // Example News Story organized
-    // {
-    //        "id": "tv-and-radio\/2018\/jul\/16\/sharp-objects-recap-season-one-episode-two-dirt",
-    //        "type": "article",
-    //        "sectionId": "tv-and-radio",
-    //        "sectionName": "Television & radio",
-    //        "webPublicationDate": "2018-07-16T02:15:24Z",
-    //        "webTitle": "Sharp Objects recap: season one, episode two \u2013 Dirt",
-    //        "webUrl": "https:\/\/www.theguardian.com\/tv-and-radio\/2018\/jul\/16\/sharp-objects-recap-season-one-episode-two-dirt",
-    //        "apiUrl": "https:\/\/content.guardianapis.com\/tv-and-radio\/2018\/jul\/16\/sharp-objects-recap-season-one-episode-two-dirt",
-    //        "tags": [
-    //          {
-    //            "id": "profile\/rebeccanicholson",
-    //            "type": "contributor",
-    //            "webTitle": "Rebecca Nicholson",
-    //            "webUrl": "https:\/\/www.theguardian.com\/profile\/rebeccanicholson",
-    //            "apiUrl": "https:\/\/content.guardianapis.com\/profile\/rebeccanicholson",
-    //            "references": [
-    //
-    //            ],
-    //            "bio": "<p>Rebecca Nicholson is a freelance writer&nbsp;<\/p>",
-    //            "bylineImageUrl": "https:\/\/static.guim.co.uk\/sys-images\/Guardian\/Pix\/contributor\/2015\/6\/3\/1433328429342\/Rebecca-Nicholson.jpg",
-    //            "bylineLargeImageUrl": "https:\/\/uploads.guim.co.uk\/2017\/10\/09\/Rebecca-Nicholson,-L.png",
-    //            "firstName": "nicholson",
-    //            "lastName": "rebecca"
-    //          }
-    //        ],
-    //        "isHosted": false,
-    //        "pillarId": "pillar\/arts",
-    //        "pillarName": "Arts"
-    //      },
-
-    // Sample border wall query
-    // https://content.guardianapis.com/search?q=BORDER%20AND%20WALL&api-key=9450dc58-f15c-42cc-a0a5-3b9b19b4f61d
-    // Has contributors
-    // https://content.guardianapis.com/search?show-tags=contributor&api-key=9450dc58-f15c-42cc-a0a5-3b9b19b4f61d
-    // Full Cali query
-    // https://content.guardianapis.com/search?show-tags=contributor&order-by=relevance&q=california&api-key=9450dc58-f15c-42cc-a0a5-3b9b19b4f61d
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.

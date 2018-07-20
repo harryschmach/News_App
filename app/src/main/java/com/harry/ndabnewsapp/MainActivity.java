@@ -5,15 +5,11 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -126,8 +122,6 @@ public class MainActivity extends AppCompatActivity
         queryApi = "No news found with this query:" + uriBuilder.toString();
         return new NewsStoryLoader(this, uriBuilder.toString());
 
-//        String testQuery = "https://content.guardianapis.com/search?show-tags=contributor&order-by=relevance&q=california&api-key=9450dc58-f15c-42cc-a0a5-3b9b19b4f61d";
-//        return new NewsStoryLoader(this, uriBuilder.toString());
     }
 
     @Override
