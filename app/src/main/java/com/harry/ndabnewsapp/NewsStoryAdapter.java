@@ -76,7 +76,7 @@ public class NewsStoryAdapter extends ArrayAdapter<NewsStory> {
         // Create a new Date object from the time in milliseconds of the earthquake
         // need to format the date string to clip that TZ nonsense
         // "webPublicationDate": "2018-07-16T02:15:24Z",
-        String dateForDisplay = date.substring(0,11);
+        String dateForDisplay = date.substring(0,10);
 
         // Find the TextView with view ID date
         TextView dateView = listItemView.findViewById(R.id.news_date);

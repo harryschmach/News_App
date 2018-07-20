@@ -190,9 +190,13 @@ public final class QueryUtils {
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(newsJSON);
 
-            // Extract the JSONArray associated with the key called "results",
+            // Extract the JSONObject associated with the key called "response",
             // which represents a list of results (or newsStories).
-            JSONArray newsStoriesArray = baseJsonResponse.getJSONArray("results");
+            JSONObject newsStoriesBigObject = baseJsonResponse.getJSONObject("response");
+            // Extract the JSONArray associated with the key called "results",
+            // which represents a list of results (or newsStories). Actually the stories
+
+            JSONArray newsStoriesArray = newsStoriesBigObject.getJSONArray("results");
 
             // For each news article in the newsStoriesArray, create an {@link NewsStory} object
             for (int i = 0; i < newsStoriesArray.length(); i++) {
@@ -241,7 +245,7 @@ public final class QueryUtils {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the JSON results", e);
         }
 
         // Return the list of newsStories

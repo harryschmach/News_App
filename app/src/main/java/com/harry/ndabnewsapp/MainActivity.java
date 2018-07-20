@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity
             "http://content.guardianapis.com/search?";
 
     private static final String MY_GUARDIAN_API_KEY =
-            "&api-key=9450dc58-f15c-42cc-a0a5-3b9b19b4f61d";
+            "9450dc58-f15c-42cc-a0a5-3b9b19b4f61d";
+
+    private String queryApi;
 
     /**
      * Constant value for the loader ID. We can choose any integer.
@@ -121,7 +123,9 @@ public class MainActivity extends AppCompatActivity
         uriBuilder.appendQueryParameter("q", "california");
         uriBuilder.appendQueryParameter("api-key", MY_GUARDIAN_API_KEY);
 
+        queryApi = "No news found with this query:" + uriBuilder.toString();
         return new NewsStoryLoader(this, uriBuilder.toString());
+
 //        String testQuery = "https://content.guardianapis.com/search?show-tags=contributor&order-by=relevance&q=california&api-key=9450dc58-f15c-42cc-a0a5-3b9b19b4f61d";
 //        return new NewsStoryLoader(this, uriBuilder.toString());
     }
@@ -133,7 +137,7 @@ public class MainActivity extends AppCompatActivity
         loadingIndicator.setVisibility(View.GONE);
 
         // Set empty state text to display "No newsStories found."
-        mEmptyStateTextView.setText(R.string.no_earthquakes);
+        mEmptyStateTextView.setText(R.string.no_news);
 
         // Clear the adapter of previous data
         //mAdapter.clear();
