@@ -5,11 +5,15 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -111,12 +115,25 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public Loader<List<NewsStory>> onCreateLoader(int i, Bundle bundle) {
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String locationPref = sharedPrefs.getString(
+                getString(R.string.settings_location_pref_key),
+                getString(R.string.settings_location_pref_default));
+
+        String orderBy  = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default)
+        );
+
         Uri baseUri = Uri.parse(TG_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         uriBuilder.appendQueryParameter("show-tags", "contributor");
-        uriBuilder.appendQueryParameter("order-by", "relevance");
-        uriBuilder.appendQueryParameter("q", "california");
+        uriBuilder.appendQueryParameter("order-by", orderBy);
+        uriBuilder.appendQueryParameter("q", locationPref);
         uriBuilder.appendQueryParameter("api-key", MY_GUARDIAN_API_KEY);
 
         queryApi = "No news found with this query:" + uriBuilder.toString();
@@ -150,4 +167,22 @@ public class MainActivity extends AppCompatActivity
         mAdapter.clear();
     }
 
+    @Override
+    // This method initialize the contents of the Activity's options menu.
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the Options Menu we specified in XML
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
